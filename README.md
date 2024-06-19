@@ -12,7 +12,7 @@ This project is a [Streamlit](https://streamlit.io/)-based application designed 
 
 ## Deployment
 
-[![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fbenalexkeen%2Fstreamlit-azure-app-services%2Fmain%2Fazuredeploy.json)
+[![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fsieverett%2Fvehicle-verification%2Fmain%2Fazuredeploy.json)
 
 ## Machine Learning Approach
 
