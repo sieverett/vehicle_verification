@@ -10,6 +10,10 @@ This project is a [Streamlit](https://streamlit.io/)-based application designed 
 - **Vehicle Verification:** Check if a new vehicle image matches any allowed vehicles using a machine learning model.
 - **Threshold Adjustment:** Set the similarity threshold for verification via a slider.
 
+## Deployment
+
+[![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fbenalexkeen%2Fstreamlit-azure-app-services%2Fmain%2Fazuredeploy.json)
+
 ## Machine Learning Approach
 
 The project uses a pre-trained [ResNet50](https://pytorch.org/vision/stable/models.html#torchvision.models.resnet50) model to extract features from vehicle images. These features are compared using cosine similarity to determine how similar the uploaded vehicle image is to the pre-approved images.
