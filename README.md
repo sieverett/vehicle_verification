@@ -1,8 +1,8 @@
-# Vehicle Verification and Image Management App
+# Vehicle Verification App
 
 ## Overview
 
-This project is a Streamlit-based application designed for managing and verifying vehicle images using machine learning. The app allows users to upload and manage vehicle images and verify if a new vehicle image matches any pre-approved vehicles based on a similarity threshold.
+This project is a [Streamlit](https://streamlit.io/)-based application designed for managing and verifying vehicle images using machine learning. The app allows users to upload and manage vehicle images and verify if a new vehicle image matches any pre-approved vehicles based on a similarity threshold.
 
 ## Features
 
@@ -10,15 +10,15 @@ This project is a Streamlit-based application designed for managing and verifyin
 - **Vehicle Verification:** Check if a new vehicle image matches any allowed vehicles using a machine learning model.
 - **Threshold Adjustment:** Set the similarity threshold for verification via a slider.
 
-## Approach
+## Machine Learning Approach
 
-The project uses a pre-trained ResNet50 model to extract features from vehicle images. These features are compared using cosine similarity to determine how similar the uploaded vehicle image is to the pre-approved images.
+The project uses a pre-trained [ResNet50](https://pytorch.org/vision/stable/models.html#torchvision.models.resnet50) model to extract features from vehicle images. These features are compared using cosine similarity to determine how similar the uploaded vehicle image is to the pre-approved images.
 
 ### Steps:
 
 1. **Image Preprocessing:** Images are resized, center-cropped, and normalized.
 2. **Feature Extraction:** Features are extracted using the ResNet50 model.
-3. **Similarity Calculation:** Cosine similarity is used to compare features between images.
+3. **Similarity Calculation:** [Cosine similarity](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.cosine_similarity.html) is used to compare features between images.
 4. **Threshold Check:** The similarity score is checked against a user-defined threshold to verify if the vehicle is allowed.
 
 ## Installation
@@ -40,13 +40,13 @@ pip install -r requirements.txt
 ## Requirements
 
 - Python 3.7+
-- Streamlit
-- Torch
-- Torchvision
-- Pillow
-- Numpy
-- Pandas
-- Scikit-learn
+- [Streamlit](https://streamlit.io/)
+- [Torch](https://pytorch.org/)
+- [Torchvision](https://pytorch.org/vision/stable/index.html)
+- [Pillow](https://python-pillow.org/)
+- [Numpy](https://numpy.org/)
+- [Pandas](https://pandas.pydata.org/)
+- [Scikit-learn](https://scikit-learn.org/)
 
 ## License
 
