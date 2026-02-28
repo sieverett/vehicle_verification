@@ -1,57 +1,67 @@
-# Vehicle Verification App
+# Vehicle Verification
 
-## Overview
+![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
 
-This project is a [Streamlit](https://streamlit.io/)-based application designed for managing and verifying vehicle images using machine learning. The app allows users to upload and manage vehicle images and verify if a new vehicle image matches any pre-approved vehicles based on a similarity threshold.
-
-## Features
-
-- **Image Manager:** Upload, view, and delete vehicle images.
-- **Vehicle Verification:** Check if a new vehicle image matches any allowed vehicles using a machine learning model.
-- **Threshold Adjustment:** Set the similarity threshold for verification via a slider.
-
-## Deployment
+Vehicle image verification using ResNet50 feature extraction and cosine similarity.
 
 [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https://raw.githubusercontent.com/sieverett/vehicle_verification/main/azuredeploy.json)
 
-## Machine Learning Approach
+---
 
-The project uses a pre-trained [ResNet50](https://pytorch.org/vision/stable/models.html#torchvision.models.resnet50) model to extract features from vehicle images. These features are compared using cosine similarity to determine how similar the uploaded vehicle image is to the pre-approved images.
+## About
 
-### Steps:
+This application determines whether a given vehicle image matches any image in a set of pre-approved vehicles. It uses a pretrained ResNet50 convolutional neural network to extract feature vectors from images, then compares those vectors using cosine similarity against a configurable threshold.
 
-1. **Image Preprocessing:** Images are resized, center-cropped, and normalized.
-2. **Feature Extraction:** Features are extracted using the ResNet50 model.
-3. **Similarity Calculation:** [Cosine similarity](https://scikit-learn.org/stable/modules/generated/sklearn.metrics.pairwise.cosine_similarity.html) is used to compare features between images.
-4. **Threshold Check:** The similarity score is checked against a user-defined threshold to verify if the vehicle is allowed.
+The interface is built with Streamlit and includes an image management sidebar for uploading and removing reference images, a similarity threshold slider, and a detailed comparison table.
 
-## Installation
+## How It Works
 
-To install the required packages, run:
-```sh
+1. **Preprocessing** -- Input images are resized to 256px, center-cropped to 224px, and normalized to ImageNet statistics.
+2. **Feature Extraction** -- A pretrained ResNet50 model (ImageNet weights) produces a 1000-dimensional feature vector for each image.
+3. **Reference Database** -- Feature vectors for all approved vehicle images are serialized to a pickle file for fast lookup.
+4. **Similarity Scoring** -- Cosine similarity is computed between the uploaded image's feature vector and every reference vector.
+5. **Threshold Decision** -- If any similarity score meets or exceeds the user-defined threshold (default 0.8), the vehicle is marked as allowed.
+
+## Getting Started
+
+### Prerequisites
+
+- Python 3.11+
+
+### Installation
+
+```bash
+git clone https://github.com/sieverett/vehicle_verification.git
+cd vehicle_verification
 pip install -r requirements.txt
 ```
 
-## Usage
+### Running the Application
 
-1. Run the Streamlit app:
-   ```sh
-   streamlit run app.py
-   ```
-2. Use the sidebar to upload and manage vehicle images.
-3. Upload a new vehicle image in the main interface to verify if it is allowed based on the similarity threshold.
+```bash
+cd app
+streamlit run app.py
+```
 
-## Requirements
+1. Use the sidebar **Image Manager** to upload reference vehicle images.
+2. Adjust the **similarity threshold** in the sidebar Settings panel.
+3. Upload a vehicle image in the main area to verify it against the reference set.
 
-- Python 3.7+
-- [Streamlit](https://streamlit.io/)
-- [Torch](https://pytorch.org/)
-- [Torchvision](https://pytorch.org/vision/stable/index.html)
-- [Pillow](https://python-pillow.org/)
-- [Numpy](https://numpy.org/)
-- [Pandas](https://pandas.pydata.org/)
-- [Scikit-learn](https://scikit-learn.org/)
+## Project Structure
+
+```
+vehicle_verification/
+  app/
+    app.py              # Streamlit application
+    vehicles/           # Reference vehicle images (user-managed, gitignored)
+  azuredeploy.json      # Azure App Service ARM template
+  azuredeploy.parameters.json
+  requirements.txt
+```
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for details.
+MIT. See [LICENSE](LICENSE) for details.

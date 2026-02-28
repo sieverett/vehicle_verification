@@ -1,3 +1,10 @@
+# Application artifacts
+*.pkl
+app/vehicles/*.png
+app/vehicles/*.jpg
+app/vehicles/*.jpeg
+vehicle.png
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
